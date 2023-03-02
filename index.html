@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Hack or Snooze</title>
-  <link rel="stylesheet" 
+  <link rel="stylesheet"
         href="https://www.unpkg.com/bootstrap-icons/font/bootstrap-icons.css">
   <link rel="stylesheet" href="css/site.css">
   <link rel="stylesheet" href="css/user.css">
@@ -40,6 +40,26 @@
     <a class="hidden" id="nav-logout" href="#"><small>(logout)</small></a>
   </div>
 </nav>
+
+<!-- Submit new Story Form -->
+<section class="submit-new-story-container container">
+  <form action="" id="new-story-form" class="new-story-form hidden">
+    <div class="new-story-input">
+      <label for="new-story-author">author</label>
+      <input id="new-story-author" placeholder="author name" autocapitalize="words">
+    </div>
+    <div class="new-story-input">
+      <label for="new-story-title">title</label>
+      <input id="new-story-title" placeholder="story title">
+    </div>
+    <div class="new-story-input">
+      <label for="new-story-url">url</label>
+      <input id="new-story-url" placeholder="story url">
+    </div>
+    <button type="submit">submit</button>
+    <hr>
+  </form>
+</section>
 
 <!-- area for stories (all stories, user stories, favorites) -->
 <section class="stories-container container">
@@ -88,6 +108,7 @@
     <button type="submit">create account</button>
   </form>
 </section>
+
 
 <!-- Library JS & our JS -->
 <script src="https://unpkg.com/jquery"></script>
