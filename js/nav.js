@@ -37,7 +37,9 @@ function updateNavOnLogin() {
   $navUserProfile.text(`${currentUser.username}`).show();
 }
 
-/** When a user clicks on submit link in navbar, update the story list*/
+/** When a user clicks on submit link in navbar
+ * dislay the form for submitting a new story
+*/
 
 function navSubmitStoryClick() {
   $newStoryForm.show();
