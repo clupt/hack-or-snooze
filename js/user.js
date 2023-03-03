@@ -114,6 +114,8 @@ function updateUIOnUserLogin() {
 
   // TODO: Show all stars on stories
   // $allFavoritesStars.css("display", "inline");
+  // Think this is incorrect - and we potentially handle this logic when
+  // generating the story markup
 
   updateNavOnLogin();
 }
