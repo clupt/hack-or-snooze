@@ -63,9 +63,9 @@ async function submitNewStory(evt) {
 
   // get data from the form
   const userInputStory = {
-    title: $(evt.target).contents().find("#new-story-title").val(),
-    author: $(evt.target).contents().find("#new-story-author").val(),
-    url: $(evt.target).contents().find("#new-story-url").val(),
+    title: $("#new-story-title").val(),
+    author: $("#new-story-author").val(),
+    url: $("#new-story-url").val(),
   };
 
   console.log("userInputStory=", userInputStory);
@@ -78,7 +78,8 @@ async function submitNewStory(evt) {
 
   console.log("newStory=", newStory);
   // put new story on page
-  putStoriesOnPage();
+  const storyForSubmission = generateStoryMarkup(newStory);
+  $allStoriesList.prepend(storyForSubmission);
 }
 
 // add submit event listener on submit form that invokes submitNewStory
