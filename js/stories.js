@@ -26,6 +26,7 @@ function generateStoryMarkup(story) {
 
   // TODO: Add helper function and invoke here to decide if we are adding
   // empty star or filled favorite star?
+  // AND/OR are we adding a star at all?
 
   return $(`
       <li id="${story.storyId}">
