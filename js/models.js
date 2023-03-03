@@ -226,4 +226,18 @@ class User {
       return null;
     }
   }
+
+  /** toggleStoryFavorites
+   *
+   * lets a logged in user favorite or unfavorite a story
+   * takes in the story instance
+   * check to see if that story instance is in the favorites array
+   * ifso, remove from favs array by calling unFavoriteStory
+   * if not, add to favs array by calling favoriteStory
+   */
+
+
+  /** favoriteStory */
+
+  /** unFavoriteStory */
 }
