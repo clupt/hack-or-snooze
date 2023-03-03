@@ -112,5 +112,8 @@ function updateUIOnUserLogin() {
 
   $allStoriesList.show();
 
+  // TODO: Show all stars on stories
+  // $allFavoritesStars.css("display", "inline");
+
   updateNavOnLogin();
 }
