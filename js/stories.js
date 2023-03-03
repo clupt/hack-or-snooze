@@ -51,30 +51,34 @@ function putStoriesOnPage() {
   $allStoriesList.show();
 }
 
-/**  */
-async function submitNewStory(evt){
+/** Gets values from user story on submit event and adds story to page */
+async function submitNewStory(evt) {
   evt.preventDefault();
 
-  console.log(evt);
+  console.log("evt=", evt);
+  console.log("evt.target", evt.target);
 
-  console.log(evt.target);
-
-  console.log($(evt.target).contents().find("#new-story-title").val());
+  console.log("val from title=",
+    $(evt.target).contents().find("#new-story-title").val());
 
   // get data from the form
   const userInputStory = {
     title: $(evt.target).contents().find("#new-story-title").val(),
     author: $(evt.target).contents().find("#new-story-author").val(),
     url: $(evt.target).contents().find("#new-story-url").val(),
-  }
-  console.log(userInputStory);
+  };
+
+  console.log("userInputStory=", userInputStory);
+  console.log("currentUser=", currentUser);
+  console.log("storyList=", storyList);
+  console.log("storyList.addStory()=", storyList.addStory);
 
   // call .addStory method with user, object of newStory
   const newStory = await storyList.addStory(currentUser, userInputStory);
 
-  console.log(newStory);
+  console.log("newStory=", newStory);
   // put new story on page
-
+  putStoriesOnPage();
 }
 
 // add submit event listener on submit form that invokes submitNewStory
