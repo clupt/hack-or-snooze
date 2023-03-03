@@ -12,6 +12,35 @@ async function getAndShowStoriesOnStart() {
   putStoriesOnPage();
 }
 
+
+/**  generateStar helper function for generating appropriate markup
+ * based on user login status and story's current favorite status
+ *
+ * -- generates no star if logged out
+ * -- generates filled star if favorite
+ * -- generates empty star if not favorited
+ *
+*/
+
+function generateStar(story) {
+  //if currently logged out - do this
+  if (!(currentUser instanceof User)) {
+    return '';
+  }
+
+  console.log("favorites=", currentUser.favorites);
+  //if currently logged in - do this
+  if (currentUser.favorites.some((obj) => (obj.storyId === story.storyId))) {
+    //generate a filled star
+    return "bi bi-star-fill";
+  }
+  else {
+    //generate an empty star
+    return "bi bi-star";
+  }
+}
+
+
 /**
  * A render method to render HTML for an individual Story instance
  * - story: an instance of Story
@@ -23,14 +52,15 @@ function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
 
   const hostName = story.getHostName();
+  const generatedStar = generateStar(story);
+  console.log("generatedStar inside of markup fn=", generateStar(story));
 
-  // TODO: Add helper function and invoke here to decide if we are adding
-  // empty star or filled favorite star?
-  // AND/OR are we adding a star at all?
+
+  //pull down generatedStar from above
 
   return $(`
       <li id="${story.storyId}">
-        <i class="bi bi-star"></i>
+        <i class="${generatedStar} star"></i>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -98,9 +128,9 @@ $("#new-story-form").on("submit", submitNewStory);
  * invoke either favorite or unfavorite story as a result
  */
 
-function toggleStoryFavorite(evt) {
-  evt.preventDefault();
+// function toggleStoryFavorite(evt) {
+//   evt.preventDefault();
 
 
 
-}
+// }
