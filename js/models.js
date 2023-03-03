@@ -23,9 +23,10 @@ class Story {
 
   /** Parses hostname out of URL and returns it. */
 
-  getHostName() {//TODO: implement this to return correct hostname
-    // UNIMPLEMENTED: complete this function!
-    return "hostname.com";
+  getHostName() {
+    const currentUrl = new URL(this.url);
+    console.log("currUrl=", currentUrl);
+    return currentUrl.host;
   }
 }
 
