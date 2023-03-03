@@ -85,15 +85,15 @@ class StoryList {
 
     const storyData = response.data.story;
     console.log("storyData=", storyData);
-
     console.log("response=", response);
+
     //make a new story instance
     const newStoryFromData = new Story({
       "storyId": storyData.storyId,
       "title": storyData.title,
       "author": storyData.author,
       "url": storyData.url,
-      "userName": storyData.userName,
+      "username": storyData.username,
       "createdAt": storyData.createdAt
     }
     );
