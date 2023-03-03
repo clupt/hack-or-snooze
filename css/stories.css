@@ -37,3 +37,9 @@
 .story-user {
   display: block;
 }
+
+/* Favorites Icon */
+.star::before {
+  content: " ";
+  
+}
