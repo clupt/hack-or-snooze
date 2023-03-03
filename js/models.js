@@ -74,12 +74,9 @@ class StoryList {
    */
 
   async addStory(user, newStory) {
-    // UNIMPLEMENTED: complete this function!
-    //this is where we will send the POST request to the API to add the story
-
+    //this is where we  send the POST request to the API to add the story
     const response = await axios.post(
       `${BASE_URL}/stories`,
-      //need to update the user.token for this to work
       {
         "token": user.loginToken,
         "story": newStory
