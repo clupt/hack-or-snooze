@@ -56,11 +56,16 @@ function generateStoryMarkup(story) {
   console.log("generatedStar inside of markup fn=", generateStar(story));
 
 
-  //pull down generatedStar from above
+  // TODO: Remove span when not logged in?
 
   return $(`
-      <li id="${story.storyId}">
-        <i class="${generatedStar} star"></i>
+      <li id="${story.storyId}" data-story-id="${story.storyId}">
+      <span class="star">
+        <i class="${generateStar}"></i>
+      </span>
+        <span class="star">
+          <i class="${generatedStar}"></i>
+        </span>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -128,9 +133,11 @@ $("#new-story-form").on("submit", submitNewStory);
  * invoke either favorite or unfavorite story as a result
  */
 
-// function toggleStoryFavorite(evt) {
-//   evt.preventDefault();
+function toggleStoryFavorite(evt) {
+  const storyId = $(evt.target).closest("[data-story-id]").val();
+  console.log(storyId);
 
+}
 
-
-// }
+// adding click even on all $allStars i child
+$("#all-stories-list").on("click", ".star", toggleStoryFavorite);
