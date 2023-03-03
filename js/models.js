@@ -23,7 +23,7 @@ class Story {
 
   /** Parses hostname out of URL and returns it. */
 
-  getHostName() {
+  getHostName() {//TODO: implement this to return correct hostname
     // UNIMPLEMENTED: complete this function!
     return "hostname.com";
   }
@@ -78,35 +78,35 @@ class StoryList {
     const response = await axios.post(
       `${BASE_URL}/stories`,
       {
-        "token": user.loginToken,
-        "story": newStory
+        token: user.loginToken,
+        story: newStory
       }
     );
-
     const storyData = response.data.story;
     console.log("storyData=", storyData);
     console.log("response=", response);
 
     //make a new story instance
-    const newStoryFromData = new Story({
-      "storyId": storyData.storyId,
-      "title": storyData.title,
-      "author": storyData.author,
-      "url": storyData.url,
-      "username": storyData.username,
-      "createdAt": storyData.createdAt
+
+    const story = new Story({
+      storyId: storyData.storyId,
+      title: storyData.title,
+      author: storyData.author,
+      url: storyData.url,
+      username: storyData.username,
+      createdAt: storyData.createdAt
     }
     );
 
     console.log("newStory=", newStory);
-    console.log("newStoryFromData=", newStoryFromData);
+    console.log("story=", story);
 
     //add it to the story list
     console.log("this.stories=", this.stories);
-    this.stories.unshift(newStoryFromData);
+    this.stories.unshift(story);
     console.log("this.stories=", this.stories);
     //return the new Story instance
-    return newStoryFromData;
+    return story;
   }
 }
 
