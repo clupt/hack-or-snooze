@@ -25,7 +25,6 @@ class Story {
 
   getHostName() {
     const currentUrl = new URL(this.url);
-    console.log("currUrl=", currentUrl);
     return currentUrl.host;
   }
 }
@@ -227,37 +226,35 @@ class User {
     }
   }
 
-  /** toggleStoryFavorites
-   *
-   * lets a logged in user favorite or unfavorite a story
-   * takes in the story instance
-   * check to see if that story instance is in the favorites array
-   * ifso, remove from favs array by calling unFavoriteStory
-   * if not, add to favs array by calling favoriteStory
-   */
-
-
   /** favoriteStory input: story */
   async favoriteStory(story) {
-  // making a post request to add story to the favorites list
-  const response = await axios({
-    method: "POST",
-    url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
-    data: {token: this.loginToken}
-  });
+    // making a post request to add story to the favorites list
+    const response = await axios({
+      method: "POST",
+      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      data: { token: this.loginToken }
+    });
 
-  this.favorites.push(story);
+    this.favorites.push(story);
   }
 
   /** unFavoriteStory input: story */
 
   async unFavoriteStory(story) {
-  // make a delete request to remove story from the list
-    await axios({
+    console.log("unFavorite fired");
+    // make a delete request to remove story from the list
+    const response = await axios({
+      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
       method: "DELETE",
-      url: "",
-      config: {params: {}}
-    })
-  }
+      data: { token: this.loginToken }
+    });
+    console.log("response from unfv=", response);
 
+    const newFavoritesList = this.favorites.filter((el) => {
+      return el.storyId !== story.storyId;
+    });
+
+    console.log("newFavs=", newFavoritesList);
+    this.favorites = newFavoritesList;
+  }
 }
