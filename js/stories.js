@@ -50,3 +50,32 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+/**  */
+async function submitNewStory(evt){
+  evt.preventDefault();
+
+  console.log(evt);
+
+  console.log(evt.target);
+
+  console.log($(evt.target).contents().find("#new-story-title").val());
+
+  // get data from the form
+  const userInputStory = {
+    title: $(evt.target).contents().find("#new-story-title").val(),
+    author: $(evt.target).contents().find("#new-story-author").val(),
+    url: $(evt.target).contents().find("#new-story-url").val(),
+  }
+  console.log(userInputStory);
+
+  // call .addStory method with user, object of newStory
+  const newStory = await storyList.addStory(currentUser, userInputStory);
+
+  console.log(newStory);
+  // put new story on page
+
+}
+
+// add submit event listener on submit form that invokes submitNewStory
+$("#new-story-form").on("submit", submitNewStory);
