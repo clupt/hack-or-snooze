@@ -237,7 +237,27 @@ class User {
    */
 
 
-  /** favoriteStory */
+  /** favoriteStory input: story */
+  async favoriteStory(story) {
+  // making a post request to add story to the favorites list
+  const response = await axios({
+    method: "POST",
+    url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+    data: {token: this.loginToken}
+  });
 
-  /** unFavoriteStory */
+  this.favorites.push(story);
+  }
+
+  /** unFavoriteStory input: story */
+
+  async unFavoriteStory(story) {
+  // make a delete request to remove story from the list
+    await axios({
+      method: "DELETE",
+      url: "",
+      config: {params: {}}
+    })
+  }
+
 }
