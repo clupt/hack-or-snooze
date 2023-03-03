@@ -84,3 +84,17 @@ async function submitNewStory(evt) {
 
 // add submit event listener on submit form that invokes submitNewStory
 $("#new-story-form").on("submit", submitNewStory);
+
+/** toggleStoryFavorites
+ * listens for click event on favorites star
+ * gets storyId from that star (closest?)
+ * determine if that story instance is in the users favroites list
+ * invoke either favorite or unfavorite story as a result
+ */
+
+function toggleStoryFavorite(evt) {
+  evt.preventDefault();
+
+
+
+}
