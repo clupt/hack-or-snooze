@@ -28,7 +28,7 @@ function generateStar(story) {
     return '';
   }
 
-  console.log("favorites=", currentUser.favorites);
+  // console.log("favorites=", currentUser.favorites);
   //if currently logged in - do this
   if (currentUser.favorites.some((obj) => (obj.storyId === story.storyId))) {
     //generate a filled star
@@ -132,18 +132,24 @@ $("#new-story-form").on("submit", submitNewStory);
 
 function toggleStoryFavorite(evt) {
   const storyId = $(evt.target).closest("[data-story-id]").data('story-id');
-  console.log("find=", storyList.stories.find(((obj) => (obj.storyId === storyId))));
+  const storyClickedOn = storyList.stories.find((obj) => (obj.storyId === storyId));
+  console.log("find=", storyList.stories.find((obj) => (obj.storyId === storyId)));
   // console.log("storyId=", storyId);
+  // DOM contents of the li
+  const $starIcon = $(evt.target).closest("[data-story-id]").contents().find("i");
 
-  if (currentUser.favorites.some((obj) => (obj.storyId === storyId))) {
-    currentUser.unFavoriteStory(obj);
+
+  if (currentUser.favorites.some((favStory) => (favStory.storyId === storyId))) {
+    currentUser.unFavoriteStory(storyClickedOn);
     //change the star from filled to unfilled
+    $starIcon.attr("class", "bi bi-star");
 
     //remove from the favorites page
   }
   else {
-    currentUser.favoriteStory(storyId);
+    currentUser.favoriteStory(storyClickedOn);
     //change the star from unfilled to filled
+    $starIcon.attr("class", "bi bi-star-fill");
 
     //add to the favorite page
   }
