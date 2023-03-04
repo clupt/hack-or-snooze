@@ -88,6 +88,25 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+// Commented out potential alternative for put favorites on page
+// /** hide unfavorited stories */
+// function hideUnfavoritedStories(){
+//   $allStoriesList.filter(() => )
+// }
+
+function putFavoritesOnPage(){
+  console.debug("putFavoritessOnPage");
+
+  $allStoriesList.empty();
+
+  // loop through all of our stories and generate HTML for them
+  for (let story of currentUser.favorites) {
+    const $story = generateStoryMarkup(story);
+    $allStoriesList.append($story);
+  }
+
+  $allStoriesList.show();
+}
 
 /** Gets values from user story on submit event and adds story to page */
 async function submitNewStory(evt) {
@@ -119,9 +138,6 @@ async function submitNewStory(evt) {
   const storyForSubmission = generateStoryMarkup(newStory);
   $allStoriesList.prepend(storyForSubmission);
 }
-
-// add submit event listener on submit form that invokes submitNewStory
-$("#new-story-form").on("submit", submitNewStory);
 
 /** toggleStoryFavorites
  * listens for click event on favorites star
@@ -156,5 +172,11 @@ function toggleStoryFavorite(evt) {
 
 }
 
-// adding click even on all $allStars i child
+// add submit event listener on submit form that invokes submitNewStory
+$("#new-story-form").on("submit", submitNewStory);
+
+// adding click event for stars on list of all stories
 $("#all-stories-list").on("click", ".star", toggleStoryFavorite);
+
+// add click event listener for favorites
+$navFavoritesLink.on("click", putFavoritesOnPage);
