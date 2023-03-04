@@ -103,6 +103,8 @@ function putFavoritesOnPage(){
   $allStoriesList.show();
 }
 
+$navFavoritesLink.on("click", putFavoritesOnPage);
+
 /** Gets values from user story on submit event and adds story to page */
 async function submitNewStory(evt) {
   evt.preventDefault();
@@ -111,9 +113,9 @@ async function submitNewStory(evt) {
 
   // get data from the form
   const userInputStory = {
-    title: $("#new-story-title").val(),
-    author: $("#new-story-author").val(),
-    url: $("#new-story-url").val(),
+    title: $newStoryTitle.val(),
+    author: $newStoryAuthor.val(),
+    url: $newStoryUrl.val(),
   };
 
   // call .addStory method with user, object of newStory
@@ -122,7 +124,16 @@ async function submitNewStory(evt) {
   // put new story on page
   const storyForSubmission = generateStoryMarkup(newStory);
   $allStoriesList.prepend(storyForSubmission);
+
+  //clear values
+  $newStoryTitle.val(""),
+  $newStoryAuthor.val(""),
+  $newStoryUrl.val(""),
+
+  $newStoryForm.hide();
 }
+
+$("#new-story-form").on("submit", submitNewStory);
 
 /** toggleStoryFavorites
  * listens for click event on favorites star
@@ -145,17 +156,11 @@ function toggleStoryFavorite(evt) {
   }
   else {
     currentUser.favoriteStory(storyClickedOn);
-    
+
     //change the star from unfilled to filled
     $starIcon.attr("class", "bi bi-star-fill");
   }
 }
 
-// add submit event listener on submit form that invokes submitNewStory
-$("#new-story-form").on("submit", submitNewStory);
-
-// adding click event for stars on list of all stories
 $("#all-stories-list").on("click", ".star", toggleStoryFavorite);
 
-// add click event listener for favorites
-$navFavoritesLink.on("click", putFavoritesOnPage);
