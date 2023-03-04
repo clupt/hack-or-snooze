@@ -18,6 +18,10 @@ const $navLogOut = $("#nav-logout");
 const $navSubmitLink = $("#nav-submit-story");
 const $navFavoritesLink = $("#nav-favorites");
 
+const $newStoryTitle = $("#new-story-title");
+const $newStoryAuthor = $("#new-story-author");
+const $newStoryUrl = $("#new-story-url");
+
 
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
