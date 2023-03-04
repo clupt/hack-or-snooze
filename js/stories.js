@@ -60,9 +60,6 @@ function generateStoryMarkup(story) {
 
   return $(`
       <li id="${story.storyId}" data-story-id="${story.storyId}">
-      <span class="star">
-        <i class="${generateStar}"></i>
-      </span>
         <span class="star">
           <i class="${generatedStar}"></i>
         </span>
@@ -134,8 +131,22 @@ $("#new-story-form").on("submit", submitNewStory);
  */
 
 function toggleStoryFavorite(evt) {
-  const storyId = $(evt.target).closest("[data-story-id]").val();
-  console.log(storyId);
+  const storyId = $(evt.target).closest("[data-story-id]").data('story-id');
+  console.log("find=", storyList.stories.find(((obj) => (obj.storyId === storyId))));
+  // console.log("storyId=", storyId);
+
+  if (currentUser.favorites.some((obj) => (obj.storyId === storyId))) {
+    currentUser.unFavoriteStory(obj);
+    //change the star from filled to unfilled
+
+    //remove from the favorites page
+  }
+  else {
+    currentUser.favoriteStory(storyId);
+    //change the star from unfilled to filled
+
+    //add to the favorite page
+  }
 
 }
 
