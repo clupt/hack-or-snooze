@@ -28,7 +28,6 @@ function generateStar(story) {
     return '';
   }
 
-  // console.log("favorites=", currentUser.favorites);
   //if currently logged in - do this
   if (currentUser.favorites.some((obj) => (obj.storyId === story.storyId))) {
     //generate a filled star
@@ -53,10 +52,6 @@ function generateStoryMarkup(story) {
 
   const hostName = story.getHostName();
   const generatedStar = generateStar(story);
-  console.log("generatedStar inside of markup fn=", generateStar(story));
-
-
-  // TODO: Remove span when not logged in?
 
   return $(`
       <li id="${story.storyId}" data-story-id="${story.storyId}">
@@ -112,11 +107,7 @@ function putFavoritesOnPage(){
 async function submitNewStory(evt) {
   evt.preventDefault();
 
-  console.log("evt=", evt);
-  console.log("evt.target", evt.target);
-
-  console.log("val from title=",
-    $(evt.target).contents().find("#new-story-title").val());
+  $(evt.target).contents().find("#new-story-title").val();
 
   // get data from the form
   const userInputStory = {
@@ -125,15 +116,9 @@ async function submitNewStory(evt) {
     url: $("#new-story-url").val(),
   };
 
-  console.log("userInputStory=", userInputStory);
-  console.log("currentUser=", currentUser);
-  console.log("storyList=", storyList);
-  console.log("storyList.addStory()=", storyList.addStory);
-
   // call .addStory method with user, object of newStory
   const newStory = await storyList.addStory(currentUser, userInputStory);
 
-  console.log("newStory=", newStory);
   // put new story on page
   const storyForSubmission = generateStoryMarkup(newStory);
   $allStoriesList.prepend(storyForSubmission);
@@ -149,27 +134,21 @@ async function submitNewStory(evt) {
 function toggleStoryFavorite(evt) {
   const storyId = $(evt.target).closest("[data-story-id]").data('story-id');
   const storyClickedOn = storyList.stories.find((obj) => (obj.storyId === storyId));
-  console.log("find=", storyList.stories.find((obj) => (obj.storyId === storyId)));
-  // console.log("storyId=", storyId);
-  // DOM contents of the li
   const $starIcon = $(evt.target).closest("[data-story-id]").contents().find("i");
 
 
   if (currentUser.favorites.some((favStory) => (favStory.storyId === storyId))) {
     currentUser.unFavoriteStory(storyClickedOn);
+
     //change the star from filled to unfilled
     $starIcon.attr("class", "bi bi-star");
-
-    //remove from the favorites page
   }
   else {
     currentUser.favoriteStory(storyClickedOn);
+    
     //change the star from unfilled to filled
     $starIcon.attr("class", "bi bi-star-fill");
-
-    //add to the favorite page
   }
-
 }
 
 // add submit event listener on submit form that invokes submitNewStory
