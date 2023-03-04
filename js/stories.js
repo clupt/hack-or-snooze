@@ -20,9 +20,9 @@ async function getAndShowStoriesOnStart() {
  * -- generates filled star if favorite
  * -- generates empty star if not favorited
  *
-*/
+*/  // TODO: add returns CSS classes
 
-function generateStar(story) {
+function generateStar(story) {  // TODO: getStar instead of generate
   //if currently logged out - do this
   if (!(currentUser instanceof User)) {
     return '';
@@ -146,16 +146,16 @@ function toggleStoryFavorite(evt) {
   const storyId = $(evt.target).closest("[data-story-id]").data('story-id');
   const storyClickedOn = storyList.stories.find((obj) => (obj.storyId === storyId));
   const $starIcon = $(evt.target).closest("[data-story-id]").contents().find("i");
-
+  // TODO:  Add event listener to i tag directly, get rid of span tag
 
   if (currentUser.favorites.some((favStory) => (favStory.storyId === storyId))) {
-    currentUser.unFavoriteStory(storyClickedOn);
+    currentUser.unFavoriteStory(storyClickedOn); // TODO: unmarkAsFavorite
 
     //change the star from filled to unfilled
     $starIcon.attr("class", "bi bi-star");
   }
   else {
-    currentUser.favoriteStory(storyClickedOn);
+    currentUser.favoriteStory(storyClickedOn); // TODO: markAsFavorite
 
     //change the star from unfilled to filled
     $starIcon.attr("class", "bi bi-star-fill");

@@ -251,7 +251,7 @@ class User {
     });
     console.log("response from unfv=", response);
 
-    const newFavoritesList = this.favorites.filter((el) => {
+    const newFavoritesList = this.favorites.filter((el) => { // TODO: call s or story
       return el.storyId !== story.storyId;
     });
 
