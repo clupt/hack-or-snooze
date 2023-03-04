@@ -228,6 +228,7 @@ class User {
 
   /** favoriteStory input: story */
   async favoriteStory(story) {
+    console.log("favoriteStory invoked");
     // making a post request to add story to the favorites list
     const response = await axios({
       method: "POST",
